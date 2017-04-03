@@ -9,10 +9,10 @@ Edit cronjobs file, by adding for example:
 
 Build and run your container:
 
-```docker build -t curjob_image .```
+```docker build -t curljob_image .```
 
-```docker run -d --name curjob curjob_image```
+```docker run -d --name curljob curljob_image```
 
 Check the logs
 
-```docker exec curjob cat /root/cronjobs.log```
+```docker exec curljob cat /root/cronjobs.log```
