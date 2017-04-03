@@ -1,0 +1,1 @@
+*/1 * * * * echo "place your cronjobs here" >> cronjobs.log
