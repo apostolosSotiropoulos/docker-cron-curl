@@ -1,16 +1,18 @@
 # docker-cron-curl
-Simple cron service that curls a target url. Can be either a fully qualified domain or a linked container.
+Simple cron service that reads tasks from file cronjobs and executes them.
 
 # Use
 
-This example links a python web app and cURLs it automatically detecting which port is exposed.
+Edit cronjobs file, by adding for example:
 
-```docker run --name cron_curl --link sentry:sentry -e curl_target=http://sentry -e cron_interval="* * * * *" cron-curl```
+```*/5 * * * * curl -I http://example.com/ >> cronjobs.log```
 
-This example cURLs a fully qualified domain every 5 minutes
+Build and run your container:
 
-```docker run --name cron_curl -e curl_target=http://www.google.com -e cron_interval="*/5 * * * *" cron-curl```
+```docker build -t curjob_image .```
 
-You can pass in silent variable to make cron less chatty
+```docker run -d --name curjob curjob_image```
 
-```docker run --name cron_curl -e curl_target=http://www.google.com -e cron_interval="* * * * *" -e silent=true cron-curl```
+Check the logs
+
+```docker exec curjob cat /root/cronjobs.log```
